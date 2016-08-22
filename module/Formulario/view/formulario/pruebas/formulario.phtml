@@ -1,0 +1,46 @@
+<h1><?php echo $this->titulo?></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+
+//El formulario llama a la misma pagina
+//El método setAtributes también puede ser llamado en la clase del formulario
+$form->setAttributes(array(
+    'action'=>"",
+    'method' => 'post'
+));
+
+$formLabel = $this->plugin('formLabel');
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form_element">
+<?php
+    $name = $form->get('nombre');
+    echo $formLabel->openTag().$name->getOption('label')." ";
+    echo $this->formInput($name);
+    echo $this->formElementErrors($name); //Mostrar los errores del formulario
+    echo $formLabel->closeTag();
+?>
+</div>
+
+
+<div class="form_element">
+<?php
+    //var_dump($error);
+    $email = $form->get('email');
+    echo $formLabel->openTag().$email->getOption('label')." ";
+    echo $this->formInput($email);
+    //echo $this->formElementErrors($email);
+    if(isset($error)){
+    //Podemos manipular mas los mensajes de error
+      echo $error["email"]['emailAddressInvalidHostname'];
+    }
+    echo $formLabel->closeTag();
+?>
+</div>
+
+<?php echo $this->formElement($form->get('submit')) ?>
+
+<?php echo $this->form()->closeTag(); ?>

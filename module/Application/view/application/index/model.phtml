@@ -1,0 +1,15 @@
+<h1>Hola desde mi modelo </h1>
+<h3>Valor desde dentro = <?php echo $this->texto ?></h3>
+<?php print_r($this->array); ?>
+<br>
+<?php var_dump($this->array); ?>
+<hr>
+<?php
+foreach ($this->array as $value) {
+    echo $value.'<br>';
+    echo '<br>';
+}
+
+?>
+
+<h3>valor desde el controler <?php echo $this->desde ?></h3>
